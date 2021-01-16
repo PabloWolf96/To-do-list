@@ -105,8 +105,4 @@ hr {
 .side-nav .active {
     color: white;
 }
-input[type="checkbox"] .check :checked {
-    background-color: #18dbdb;
-    border-color: #18dbdb;
-}
 
