@@ -67,6 +67,7 @@ input[type=submit] {
     height: 15px;
     
     
+    
 }
 
 li {
@@ -104,5 +105,8 @@ hr {
 .side-nav .active {
     color: white;
 }
-
+input[type="checkbox"] .check :checked {
+    background-color: #18dbdb;
+    border-color: #18dbdb;
+}
 
