@@ -1,0 +1,108 @@
+html, body {
+    height: 100%;
+}
+
+html {
+    display: table;
+    margin: auto;
+}
+
+body {
+    display: table-cell;
+    vertical-align: middle;
+    background-color: #18dbdb;
+}
+.container {
+    width: 700px;
+    height: 500px;
+   
+    
+    background-color: #1f2121;
+    
+    
+}
+.side-nav a {
+    float: right;
+    
+}
+.side-nav {
+    padding: 30px;
+}
+
+.container a {
+    margin: 10px;
+    text-decoration: none;
+    color: 	#808080;
+}
+.date {
+    font-weight: bold;
+    color: white;
+}
+.tasks {
+    color: #18dbdb;
+}
+
+    
+    
+
+input[type=text], input[type=submit] {
+    box-sizing: border-box;
+    height: 30px;
+    margin-top: 15px;
+    border-radius: 3px;
+    border: 0;
+    
+}
+input[type=submit] {
+    color: white;
+    background-color: #18dbdb;
+    font-size: 10px;
+    margin-left: 5px;
+     
+    width: 60px;
+    
+}
+.check, .garbage {
+    width: 15px;
+    height: 15px;
+    
+    
+}
+
+li {
+    list-style: none;
+}
+hr {
+    width: 620px;
+    margin-left: auto;
+    margin-right: auto;
+    border-color: gray;
+    
+}
+.t {
+    font-size: 14px;
+    
+    color: #fff;
+    margin-left: 13px;
+
+    
+}
+#content ul li{
+    display: flex;
+    align-items: center;
+    position: relative;
+    
+    
+    
+
+}
+.garbage {
+    position: absolute;
+    left: 613px;
+    
+}
+.side-nav .active {
+    color: white;
+}
+
+

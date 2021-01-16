@@ -1,0 +1,14 @@
+
+Hope you enjoy your new logo, here are the people that
+made your beautiful logo happen :)
+font name: playtime
+font link: https://www.fontsquirrel.com/fonts/playtime-with-hot-toddies
+font author: Graham Meade
+font author site: http://www.moorstation.org/typoasis/designers/gemnew/w01.htm
+
+
+icon designer: Mister Pixel
+icon designer link: /MisterPixel
+        
+{"bg":"#E7F3FC","icon-gradient-0":"#007DE8","icon-gradient-1":"#A1C3DB","font":"#253D52","slogan":"#395166"}
+      
