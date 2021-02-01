@@ -19,8 +19,11 @@
                 <div class="date">Saturday, June 1st</div>
                 <div class="tasks">3 active tasks</div>
                 <div class="add-input">
-                    <input type="text" placeholder="Enter a task...">
-                    <input type="submit" value="Add Task" id="add">
+                    <form id ="addForm">
+                        <input type="text" placeholder="Enter a task..." id="text-box">
+                        <input type="submit" value="Add Task" id="add">
+
+                    </form>
                 </div>
                 
                 
@@ -28,40 +31,46 @@
             </div>
             <div id="content">
                 <hr>
+                <div class="item">
                 
-                <ul class="task-list">
-                    <li>
-                        <input type="checkbox" class="check">
-                        <span class="t">Client meeting @ 2:30pm</span>
-                        <img src="..\garbage.svg" alt="" class="garbage">
+                    <ul class="task-list">
+                        <li>
+                            <input type="checkbox" class="check">
+                            <span class="t">Client meeting @ 2:30pm</span>
+                            <img src="..\garbage.svg" alt="" class="garbage">
+                            
+                            
+                        </li>
                         
                         
-                    </li>
-                    
-                    
-                    
-                </ul>
+                        
+                    </ul>
                 <hr>
-                <ul class="task-list">
-                    <li>
-                        <input type="checkbox" class="check">
-                        <span class="t">Design App interface</span>
-                        <img src="..\garbage.svg" alt="" class="garbage">
-                        
-                        
-                    </li>
-                </ul>
-                <hr>
-                <ul class="task-list">
-                    <li>
-                        <input type="checkbox" class="check">
-                        <span class="t">Learn Node.js</span>
-                        <img src="..\garbage.svg" alt="" class="garbage">
-                        
-                        
-                    </li>
-                </ul>
-                <hr>
+                </div>
+                <div class="item">
+                    <ul class="task-list">
+                        <li>
+                            <input type="checkbox" class="check">
+                            <span class="t">Design App interface</span>
+                            <img src="..\garbage.svg" alt="" class="garbage">
+                            
+                            
+                        </li>
+                    </ul>
+                    <hr>
+                </div>
+                <div class="item">
+                    <ul class="task-list">
+                        <li>
+                            <input type="checkbox" class="check">
+                            <span class="t">Learn Node.js</span>
+                            <img src="..\garbage.svg" alt="" class="garbage">
+                            
+                            
+                        </li>
+                    </ul>
+                    <hr>
+                </div>
 
                     
               
@@ -70,6 +79,7 @@
             
 
         </div>
+        <script src="../static/script.js"></script>
       
     </body>
 </html>
