@@ -1,7 +1,7 @@
 let add = document.getElementById('addForm');
 add.addEventListener('submit', addToList);
 let content = document.getElementById('content');
-
+content.addEventListener('click', removeFromList);
 
 function addToList(e) {   
     e.preventDefault();
@@ -30,4 +30,11 @@ function addToList(e) {
     item.append(hr);
     content.appendChild(item);
     
+}
+function removeFromList(e) {
+    if (e.target.className == "garbage"){
+
+        let div = e.target.parentElement.parentElement.parentElement;
+        content.removeChild(div);
+    }
 }
