@@ -18,6 +18,7 @@ body {
    
     
     background-color: #1f2121;
+    overflow: auto;
     
     
 }
@@ -38,7 +39,7 @@ body {
     font-weight: bold;
     color: white;
 }
-.tasks {
+.task-count {
     color: #18dbdb;
 }
 
@@ -104,5 +105,8 @@ hr {
 }
 .side-nav .active {
     color: white;
+}
+.task-count {
+    display: block;
 }
 
