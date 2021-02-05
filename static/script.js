@@ -4,37 +4,41 @@ add.addEventListener('submit', addToList);
 let content = document.getElementById('content');
 content.addEventListener('click', removeFromList);
 let taskCount = document.querySelector('.task-count');
-content.addEventListener('change', completed);
+content.addEventListener('change', boxChecked);
+content.addEventListener('mouseover', complete)
+content.addEventListener('mouseout', incomplete)
 
 
 function addToList(e) {   
-    e.preventDefault();
-    let item = document.createElement('div');
-    item.className = 'item';
-    let ul = document.createElement('ul');
-    ul.className = "task-list";
-    
-    let li = document.createElement('li');
-    let inp = document.createElement('input');
-    inp.className = "check";
-    inp.type = "checkbox";
-    li.appendChild(inp);
-    let span = document.createElement('span');
-    span.className = "t";
     let task = document.getElementById('text-box');
-    span.textContent = task.value;
-    li.appendChild(span);
-    let img = document.createElement('img');
-    img.className = "garbage";
-    img.src = `..\\garbage.svg`;
-    li.appendChild(img);
-    ul.appendChild(li)
-    item.appendChild(ul)
-    let hr = document.createElement('hr');
-    item.append(hr);
-    content.appendChild(item);
-    task.value = "";
-    changeTaskCount("add");
+    if (task.value != ""){
+        e.preventDefault();
+        let item = document.createElement('div');
+        item.className = 'item';
+        let ul = document.createElement('ul');
+        ul.className = "task-list";
+        
+        let li = document.createElement('li');
+        let inp = document.createElement('input');
+        inp.className = "check";
+        inp.type = "checkbox";
+        li.appendChild(inp);
+        let span = document.createElement('span');
+        span.className = "t";
+        span.textContent = task.value;
+        li.appendChild(span);
+        let img = document.createElement('img');
+        img.className = "garbage";
+        img.src = `..\\garbage.svg`;
+        li.appendChild(img);
+        ul.appendChild(li)
+        item.appendChild(ul)
+        let hr = document.createElement('hr');
+        item.append(hr);
+        content.appendChild(item);
+        task.value = "";
+        changeTaskCount("add");
+    }
 }
 function removeFromList(e) {
     if (e.target.className == "garbage"){
@@ -69,7 +73,7 @@ function changeTaskCount(change) {
        
 
 }
-function completed(e) {
+function boxChecked(e) {
     if (e.target.className == "check") {
         let li = e.target.parentElement;
         li.style.textDecoration = "line-through 3px white";
@@ -80,4 +84,26 @@ function completed(e) {
 
 
     }
+}
+function complete(e) {
+    if (e.target.className == "t") {
+        e.target.style.fontSize = "20px";
+        let com = document.querySelector('.com');
+        let incom = document.querySelector('.incom');
+        if (e.target.previousSibling.checked) {
+            com.style.color = "white";
+        } else {
+            incom.style.color = "white";
+        }
+    }
+}
+function incomplete(e) {
+    if (e.target.className == "t") {
+        e.target.style.fontSize = "14px";
+        let com = document.querySelector('.com');
+        let incom = document.querySelector('.incom');
+        com.style.color = "#808080";
+        incom.style.color = "#808080";
+    }
+
 }
