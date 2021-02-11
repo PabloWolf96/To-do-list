@@ -11,8 +11,8 @@ content.addEventListener('mouseout', incomplete)
 
 function addToList(e) {   
     let task = document.getElementById('text-box');
+    e.preventDefault();
     if (task.value != ""){
-        e.preventDefault();
         let item = document.createElement('div');
         item.className = 'item';
         let ul = document.createElement('ul');
