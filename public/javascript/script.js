@@ -4,6 +4,7 @@ add.addEventListener('submit', addToList);
 let content = document.getElementById('content');
 content.addEventListener('click', removeFromList);
 let taskCount = document.querySelector('.task-count');
+let ul = document.getElementById('task-list');
 content.addEventListener('change', boxChecked);
 content.addEventListener('mouseover', complete)
 content.addEventListener('mouseout', incomplete)
@@ -15,7 +16,7 @@ function addToList(e) {
     if (task.value != ""){
         let item = document.createElement('div');
         item.className = 'item';
-        let ul = document.createElement('ul');
+        
         ul.className = "task-list";
         
         let li = document.createElement('li');
@@ -28,14 +29,15 @@ function addToList(e) {
         span.textContent = task.value;
         li.appendChild(span);
         let img = document.createElement('img');
+        let hr = document.createElement('hr');
         img.className = "garbage";
-        img.src = `..\\garbage.svg`;
+        img.src = `/img/garbage.svg`;
         li.appendChild(img);
         ul.appendChild(li)
-        item.appendChild(ul)
-        let hr = document.createElement('hr');
-        item.append(hr);
-        content.appendChild(item);
+        ul.appendChild(hr)
+        
+        
+        
         task.value = "";
         changeTaskCount("add");
     }
@@ -43,8 +45,10 @@ function addToList(e) {
 function removeFromList(e) {
     if (e.target.className == "garbage"){
 
-        let div = e.target.parentElement.parentElement.parentElement;
-        content.removeChild(div);
+        let list = e.target.parentElement;
+        let hLine = list.nextSibling;
+        ul.removeChild(list);
+        ul.removeChild(hLine);
         changeTaskCount('delete');
     }
 }
