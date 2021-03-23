@@ -8,43 +8,49 @@ let ul = document.getElementById('task-list');
 content.addEventListener('change', boxChecked);
 content.addEventListener('mouseover', complete)
 content.addEventListener('mouseout', incomplete)
+window.onload = loadTasks;
 
-
-function addToList(e) {   
+function loadTasks() {
     let task = document.getElementById('text-box');
-    e.preventDefault();
-    if (task.value != ""){
-        let item = document.createElement('div');
-        item.className = 'item';
+    fetch('/api/tasks').then((res) => res.json()).then((data) => {
+            data.forEach(element => {
+            
+            let li = document.createElement('li');
+            let inp = document.createElement('input');
+            inp.className = "check";
+            inp.type = "checkbox";
+            li.appendChild(inp);
+            let span = document.createElement('span');
+            span.className = "t";
+            span.setAttribute('task-id', element.id);
+            span.textContent = element.task;
+            li.appendChild(span);
+            let img = document.createElement('img');
+            let hr = document.createElement('hr');
+            img.className = "garbage";
+            img.src = `/img/garbage.svg`;
+            let a = document.createElement('a');
+            a.href = `/api/delete/id=${element.id}`
+            a.appendChild(img)
+            li.appendChild(a);
+            ul.appendChild(li);
+            ul.appendChild(hr);
+            task.value = "";
+            changeTaskCount("add");
+                
+            });
         
-        ul.className = "task-list";
-        
-        let li = document.createElement('li');
-        let inp = document.createElement('input');
-        inp.className = "check";
-        inp.type = "checkbox";
-        li.appendChild(inp);
-        let span = document.createElement('span');
-        span.className = "t";
-        span.textContent = task.value;
-        li.appendChild(span);
-        let img = document.createElement('img');
-        let hr = document.createElement('hr');
-        img.className = "garbage";
-        img.src = `/img/garbage.svg`;
-        li.appendChild(img);
-        ul.appendChild(li)
-        ul.appendChild(hr)
-        
-        
-        
-        task.value = "";
-        changeTaskCount("add");
-    }
+    });
+
 }
+function addToList(e) {   
+    
+    loadTasks();
+    }
+
 function removeFromList(e) {
     if (e.target.className == "garbage"){
-
+        
         let list = e.target.parentElement;
         let hLine = list.nextSibling;
         ul.removeChild(list);

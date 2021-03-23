@@ -1,10 +1,14 @@
 <%- include('header') -%>
+<title>Login</title>
+</head>
+<body>
 <div class="text-center center-div" id="login">
             <div class="container w-25 border py-5 login-box">
                 <div class="title pb-5">
                     <h2 class="font-weight-bold">Login System</h2>
                     <span>Log in for the existing user</span>
                 </div>
+                <%- include ('./partials/messages_login') -%>
                 <form action="/login" method="POST" class="pt-3">
                     <div class="form-group">
                         <input type="email" class="form-control" placeholder="email" name="email">

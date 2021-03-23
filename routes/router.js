@@ -1,9 +1,12 @@
 const express = require('express');
 const route = express.Router();
-const createUser = require('../controller/userController');
+const control = require('../controller/userController');
 
 route.get('/todo', (req, res) => {
-    if (!req.session) {
+    if (req.session.user) {
+      
+        res.render('to-do');
+    } else {
         res.redirect('/login');
     }
 });
@@ -16,6 +19,11 @@ route.get('/login', (req, res)=> {
 route.get('/register', (req, res) =>{
     res.render('register')
 });
-route.post('/register', createUser);
+route.post('/register', control.createUser);
+route.post('/login', control.loginAuth);
+route.get('/logout', (req, res) =>{
+    req.session.destroy();
+    res.redirect('/login');
+});
 
 module.exports = route;

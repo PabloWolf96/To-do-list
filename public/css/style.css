@@ -111,3 +111,8 @@ ul hr{
     display: block;
 }
 
+#logout {
+    float: right;
+    background-color: #18dbdb;
+}
+

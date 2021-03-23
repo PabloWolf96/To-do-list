@@ -6,6 +6,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta name="author" content="Owen Ikhena">
+        <link rel="stylesheet" href="/static/css/bootstrap.min.css">
         <link rel="stylesheet" href="/static/css/style.css">
         
     </head>
@@ -19,12 +20,13 @@
                 <span class="date">Saturday, June 1st</span>
                 <span class="task-count">No active task</span>
                 <div class="add-input">
-                    <form id ="addForm">
-                        <input type="text" placeholder="Enter a task..." id="text-box">
+                    <form id ="addForm" action="/api/add" method="POST">
+                        <input type="text" placeholder="Enter a task..." id="text-box" name="task_name" required>
                         <input type="submit" value="Add Task" id="add">
 
                     </form>
                 </div>
+                <a href="/logout" id="logout" class="btn btn-info">Logout</a>
                 
                 
 
