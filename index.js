@@ -15,6 +15,7 @@ mongoose.connect(process.env.URI, {
     useUnifiedTopology: true
 }).then(()=> console.log('Database is ready')).catch(err => console.log(err));
 app.use(express.urlencoded({extended: false}));
+app.use(express.json());
 app.use(session({
     secret: 'secret',
     resave: false,

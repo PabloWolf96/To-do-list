@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+mongoose.set('useFindAndModify', false);
 const taskSchema = new mongoose.Schema({
     user: {
         type: String,
@@ -11,6 +12,10 @@ const taskSchema = new mongoose.Schema({
     task: {
         type: String,
         required: true
+    },
+    complete: {
+        type: Boolean,
+        required: false
     }
 });
 

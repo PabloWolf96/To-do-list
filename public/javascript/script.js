@@ -1,4 +1,7 @@
 "use strict";
+
+
+
 let add = document.getElementById('addForm');
 add.addEventListener('submit', addToList);
 let content = document.getElementById('content');
@@ -10,15 +13,58 @@ content.addEventListener('mouseover', complete)
 content.addEventListener('mouseout', incomplete)
 window.onload = loadTasks;
 
+function today() {
+    let todaysDate = new Date();
+    const month = [
+        'January',
+        'February',
+        'March',
+        'April',
+        'May',
+        'June',
+        'July',
+        'August',
+        'September',
+        'October',
+        'November',
+        'December'
+        ];
+    const dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    const day = todaysDate.getDate();
+    const weekday = dayNames[todaysDate.getDay()];
+    const theMonth = month[todaysDate.getMonth()];
+    let ending = '';
+    if ([0, 4, 5, 6, 7, 8, 9].includes(day % 10) ) {
+        ending = 'th';
+    } else if (day % 10 == 1) {
+        ending = 'st';
+    } else if (day % 10 == 2) {
+        ending = 'nd';
+    } else if (day % 10 == rd) {
+        ending = 'rd';
+    }
+    let date = document.querySelector('.date');
+    date.textContent = `${weekday}, ${day}${ending} ${theMonth}`;
+}
+today();
 function loadTasks() {
     let task = document.getElementById('text-box');
     fetch('/api/tasks').then((res) => res.json()).then((data) => {
+            let tasks = data.length;
+            if (tasks == 0) {
+                taskCount.textContent = 'No active task';
+            } else if (tasks == 1) {
+                taskCount.textContent = '1 active task';
+            } else if (tasks > 1) {
+                taskCount.textContent = `${tasks} active tasks`;
+            }
             data.forEach(element => {
             
             let li = document.createElement('li');
             let inp = document.createElement('input');
             inp.className = "check";
             inp.type = "checkbox";
+            inp.name = 'box';
             li.appendChild(inp);
             let span = document.createElement('span');
             span.className = "t";
@@ -30,13 +76,20 @@ function loadTasks() {
             img.className = "garbage";
             img.src = `/img/garbage.svg`;
             let a = document.createElement('a');
-            a.href = `/api/delete/id=${element.id}`
+            a.href = `/api/delete/${element.id}`
             a.appendChild(img)
             li.appendChild(a);
             ul.appendChild(li);
             ul.appendChild(hr);
+            if (element.complete == true) {
+                inp.checked = true;
+                span.style.textDecoration = "line-through 3px white";
+            } else {
+                inp.checked = false;
+                span.style.textDecoration = "none";
+            }
             task.value = "";
-            changeTaskCount("add");
+            
                 
             });
         
@@ -55,40 +108,39 @@ function removeFromList(e) {
         let hLine = list.nextSibling;
         ul.removeChild(list);
         ul.removeChild(hLine);
-        changeTaskCount('delete');
+      
     }
 }
-function changeTaskCount(change) {
-    
-    let pattern = taskCount.textContent.match(/\d+/);
-    if (change == "delete") {
-        pattern = Number(pattern[0]);
-        if (pattern == 1) {
-            taskCount.textContent = `No active task`;
-        } else if (pattern == 2) {
-            taskCount.textContent = `${pattern - 1} active task`;
-        } else if (pattern > 2) {
-            taskCount.textContent = `${pattern - 1} active tasks`;
-        }
-        
-    }
-    if (change == "add") {
-        if (pattern === null) {
-            taskCount.textContent = `1 active task`;
-        } else {
-            pattern = Number(pattern[0]);
-            taskCount.textContent = `${pattern + 1} active tasks`;
-        }
-    }
+
        
 
-}
+
 function boxChecked(e) {
     if (e.target.className == "check") {
-        let li = e.target.parentElement;
-        li.style.textDecoration = "line-through 3px white";
+        
+        let li = e.target.nextSibling;
+        if (e.target.checked) {
+            li.style.textDecoration = "line-through 3px white";
+            fetch('/api/complete', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body:JSON.stringify({id: e.target.nextSibling.getAttribute('task-id'),
+                    box: true    })
+            });
+        }
         if (!e.target.checked) {
             li.style.textDecoration = "none";
+            fetch('/api/complete', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body:JSON.stringify({id: e.target.nextSibling.getAttribute('task-id'),
+                    box: false    })
+            })
+            
 
         }
 

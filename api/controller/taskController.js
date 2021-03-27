@@ -11,10 +11,12 @@ const addTask = (req, res) => {
     const newTask = new Task({
         id: taskId,
         task: userTask,
-        user
+        user,
+        complete: false
+
     });
     newTask.save().then(task => {
-        res.render('to-do');
+        res.redirect('/todo');
         
 
     }).catch(err => console.log(err)); 
@@ -23,12 +25,11 @@ const addTask = (req, res) => {
 };
 
 const deleteTask = (req, res) => {
-    console.log(req.param('id'));
-    Task.findOneAndDelete({id: req.param('id')}, (err) => {
+    Task.findOneAndDelete({id: req.params.id}, (err) => {
         
         if (err) console.log(err);
         console.log('task deleted');
-        res.render('to-do');
+        res.redirect('/todo');
         
         
     });
@@ -46,8 +47,33 @@ const loadTasks = (req, res) => {
     });
 };
 
+const completed = (req, res) => {
+    let checked = req.body.box;
+    if (checked) {
+        Task.findOneAndUpdate({id: req.body.id}, {complete: true}, (err, data) => {
+            if (err) {
+                console.log(err);
+            } else {
+                console.log(data);
+            }
+        });
+  
+    } else {
+        Task.findOneAndUpdate({id: req.body.id}, {complete: false}, (err, data) => {
+            if (err) {
+                console.log(err);
+            } else {
+                console.log(data);
+            }
+        });
+
+    }
+
+}
+
 module.exports = {
     loadTasks,
     addTask,
-    deleteTask
+    deleteTask,
+    completed
 };
