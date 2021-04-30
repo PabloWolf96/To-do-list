@@ -164,7 +164,7 @@ class tasks {
                headers: {
                    "Content-Type": "application/json"
                 }
-            }).then(textBox.value = "");
+            }).then(textBox.value = "").catch(err => console.log(err));
             
        }
 
