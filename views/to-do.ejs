@@ -20,11 +20,12 @@
                 <span class="date">Saturday, June 1st</span>
                 <span class="task-count">No active task</span>
                 <div class="add-input">
-                    <form id ="addForm" action="/api/add" method="POST">
-                        <input type="text" placeholder="Enter a task..." id="text-box" name="task_name" required>
-                        <input type="submit" value="Add Task" id="add">
+                    <div id ="addForm">
+                        <input type="text" placeholder="Enter a task..." id="text-box"  name="task_name" required>
+                        <button class="btn btn-info" id="add">submit</button>
+                        
 
-                    </form>
+                    </div>
                 </div>
                 <a href="/logout" id="logout" class="btn btn-info">Logout</a>
                 
@@ -32,7 +33,7 @@
 
             </div>
             <div id="content">
-                <hr>
+                
                 <div class="item">
                     <ul id="task-list">
                         
